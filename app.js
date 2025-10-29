@@ -48,20 +48,31 @@ function getWeather(latitude, longitude){
     
     fetch(api)
         .then(function(response){
-            let data = response.json();
-            return data;
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
         })
         .then(function(data){
+            if (!data.main || !data.weather || !data.sys) {
+                throw new Error("Incomplete weather data");
+            }
+
             weather.temperature.value = Math.floor(data.main.temp - KELVIN);
             weather.description = data.weather[0].description;
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.country = data.sys.country;
-        })
-        .then(function(){
+
             displayWeather();
+        })
+        .catch(function(error){
+            notificationElement.style.display = "block";
+            notificationElement.innerHTML = `<p>Error: ${error.message}</p>`;
+            console.error("Weather fetch failed:", error);
         });
 }
+
 
 // DISPLAY WEATHER TO UI
 function displayWeather(){
@@ -91,6 +102,7 @@ tempElement.addEventListener("click", function(){
         weather.temperature.unit = "celsius"
     }
 });
+
 
 
 
