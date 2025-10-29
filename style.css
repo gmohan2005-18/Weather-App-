@@ -56,8 +56,11 @@ body{
 }
 
 .weather-icon img{
+    width: 40vw;          
+    max-width: 150px;     
+    height: auto;          
+    margin: auto;
     display: block;
-    margin: 0 auto;
 }
 
 .temperature-value{
@@ -106,6 +109,7 @@ body{
     text-align: center;
     font-size: 0.8em;
 }
+
 
 
 
