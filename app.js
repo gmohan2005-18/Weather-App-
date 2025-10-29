@@ -18,7 +18,7 @@ weather.temperature = {
 // APP CONSTS AND VARS
 const KELVIN = 273;
 // API KEY
-const key = "d18ac595a1e2ec053d12ba53d3697e26";
+const key = "b6907d289e10d714a6e88b30761fae22";
 
 // CHECK IF BROWSER SUPPORTS GEOLOCATION
 if('geolocation' in navigator){
@@ -44,7 +44,8 @@ function showError(error){
 
 // GET WEATHER FROM API PROVIDER
 function getWeather(latitude, longitude){
-    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+   let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=b6907d289e10d714a6e88b30761fae22`;
+
     
     fetch(api)
         .then(function(response){
@@ -102,6 +103,7 @@ tempElement.addEventListener("click", function(){
         weather.temperature.unit = "celsius"
     }
 });
+
 
 
 
